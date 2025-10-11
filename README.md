@@ -1,11 +1,31 @@
 # Simultaneous-detection-and-estimation-in-olfactory-sensing
 
+## Environment Setup
+
+Can either use environment.yml to create a conda environment or run `setup.sh` to create a virtual environment.
+```bash
+conda env create --name SDEO_env -f environment.yml
+```
+
+## Reproducing Figures
+
+Notebooks are used to generate the figures from the saved data.
+
+You could download the precomputed data from [Zenodo](~) and place it in the `data/` directory.
+
+Go to the corresponding notebook in `notebooks/` (indicated by the file name) to generate each figure.
+
+You could also run the experiments to generate the data yourself, by following the instructions in the "Running Experiments" section below.
+
+After running the above experiments, data should be saved in the `data/` directory. Then run the notebooks in `notebooks/` to generate the figures.
+
 ## Running Experiments
 
-Use the following commands from the repository root to run each example experiment:
-(Gamma sweep haven't tested)
+### Local Execution
 
-### Dynamics Demonstration (Figures 3 & Supplementary Figure ~)
+Use the following commands from the repository root to run each example experiment:
+
+#### Dynamics Demonstration (Figure 3 & Supplementary Figure S1-S3)
 
 Sensing matrix: Dense gamma
 
@@ -23,7 +43,7 @@ python -m mirrored_langevin_rnn.run configs/simulation_slam_sparse_binary.yaml &
 python -m mirrored_langevin_rnn.run configs/simulation_slam_circuit_sparse_binary.yaml
 ```
 
-New step increasing concentration dynamics:
+Slow-changing concentration dynamics:
 
 ```bash
 python -m mirrored_langevin_rnn.run configs/simulation_steps_slam_sparse_binary.yaml &
@@ -31,7 +51,7 @@ python -m mirrored_langevin_rnn.run configs/simulation_steps_slam_circuit_sparse
 python -m mirrored_langevin_rnn.run configs/simulation_steps_poisson_sparse_binary.yaml
 ```
 
-### Separated vs. Non-separated comparison (Figures 4)
+#### SDEO vs. Non-separated Comparison (Figures 5 and S5)
 
 ```bash
 # sweeps experiments
@@ -41,30 +61,40 @@ python -m mirrored_langevin_rnn.run configs/present_sweep_poisson.yaml
 python -m mirrored_langevin_rnn.run configs/gamma_sweep.yaml
 ```
 
-### Capacity Heatmap (Figure 5)
+#### Capacity Heatmap (Figures 6 and S6)
 
 ```bash
 # threshold sweep experiments
-# Poisson model
+# Non-separated model
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_poisson_dense_gamma.yaml
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_poisson_sparse_gamma.yaml
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_poisson_sparse_binary.yaml
-# SLAM Bernoulli model
+# SDEO Bernoulli model
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_bernoullil_dense_gamma.yaml
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_bernoullil_sparse_gamma.yaml
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_bernoullil_sparse_binary.yaml
-# SLAM Kumaraswamy model
+# SDEO Kumaraswamy model
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_ks_dense_gamma.yaml
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_ks_sparse_gamma.yaml
 python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_ks_sparse_binary.yaml
 ```
 
-### Miscellaneous
+#### Sparsity Sweep Heatmap (Figure S7-f)
+
+Update the sparsity in `threshold_sweep_slam_ks_sparse_binary.yaml` from 0.1 to 0.5 and run the command below for each sparsity value.
 
 ```bash
-# sparsity sweep experiments
-python -m mirrored_langevin_rnn.run configs/sparsity_sweep.yaml
+python -m mirrored_langevin_rnn.run configs/threshold_sweep_slam_ks_sparse_binary.yaml
+```
 
+### Running on a SLURM Cluster
+
+Updating the user information `.sl` files under `cluster_scripts/`. Then submit the jobs using `sbatch`.
+
+## Miscellaneous
+
+
+```bash
 # single simulation debug
 python -m mirrored_langevin_rnn.simulator.mld_rnn
 ```
