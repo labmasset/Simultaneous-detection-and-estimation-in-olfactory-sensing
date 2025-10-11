@@ -67,6 +67,8 @@ def main() -> None:
             num_low = payload.num_low
             if num_low > 0:
                 default_dir = project_root / "data" / "simulations" / 'steps' / sensing_matrix_type
+            elif payload.model == 'slam_l1':
+                default_dir = project_root / "data" / "simulations" / 'l1' / sensing_matrix_type
             else:
                 default_dir = project_root / "data" / "simulations" / 'static' / sensing_matrix_type
             default_dir.mkdir(parents=True, exist_ok=True)

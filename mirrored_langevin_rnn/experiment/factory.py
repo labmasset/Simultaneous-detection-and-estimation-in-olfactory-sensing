@@ -19,16 +19,7 @@ from .present_sweep import (
     SLAMKSNPresentSweep,
     PoissonNPresentSweep,
 )
-from .gamma_sweep import GammaSteepnessSweep
 from .threshold_sweep import PoissonL1ThresholdSweep, PoissonRankThresholdSweep, SLAMAUCThresholdSweep, SLAML1ThresholdSweep
-from .sparsity_sweep import (
-    PoissonSparsitySweep,
-    SLAMSparsitySweep,
-    SLAMKSSparsitySweep,
-    SLAMGeomSparsitySweep,
-    SLAMDistSparsitySweep,
-)
-
 
 _PRESENT_EXPERIMENT = {
     ("poisson"): PoissonNPresentSweep,
@@ -48,14 +39,6 @@ _THRESHOLD_EXPERIMENT = {
     ("slam_ks", "roc"): SLAMAUCThresholdSweep,
 }
 
-_SPARSITY_EXPERIMENT = {
-    "poisson": PoissonSparsitySweep,
-    "slam": SLAMSparsitySweep,
-    "slam_ks": SLAMKSSparsitySweep,
-    "slam_geom": SLAMGeomSparsitySweep,
-    "slam_dist": SLAMDistSparsitySweep,
-}
-
 Experiment = (
     SLAMNaiveNPresentSweep
     | SLAMCircuitNPresentSweep
@@ -63,16 +46,10 @@ Experiment = (
     | SLAMGeomNPresentSweep
     | SLAMDistNPresentSweep
     | PoissonNPresentSweep
-    | GammaSteepnessSweep
     | PoissonL1ThresholdSweep
     | PoissonRankThresholdSweep
     | SLAML1ThresholdSweep
     | SLAMAUCThresholdSweep
-    | PoissonSparsitySweep
-    | SLAMSparsitySweep
-    | SLAMKSSparsitySweep
-    | SLAMGeomSparsitySweep
-    | SLAMDistSparsitySweep
 )
 
 
@@ -85,17 +62,10 @@ def create_experiment(cfg: ExperimentConfigBase) -> Experiment:
         key = cfg.model.lower()
         return _PRESENT_EXPERIMENT[key](cfg)
     
-    if isinstance(cfg, GammaSweepConfig):
-        return GammaSteepnessSweep(cfg)
-    
     if isinstance(cfg, ThresholdSweepConfig):
         key = (cfg.model.lower(), cfg.metric.lower())
         return _THRESHOLD_EXPERIMENT[key](cfg)
 
-    if isinstance(cfg, SparsitySweepConfig):
-        key = cfg.model.lower()
-        return _SPARSITY_EXPERIMENT[key](cfg)
-    
     raise ValueError(f"Unsupported experiment config: {type(cfg).__name__}")
 
 

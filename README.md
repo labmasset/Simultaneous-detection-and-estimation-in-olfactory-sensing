@@ -2,9 +2,18 @@
 
 ## Environment Setup
 
-Can either use environment.yml to create a conda environment or run `setup.sh` to create a virtual environment.
+You can either use environment.yml to create a conda environment or run `setup.sh` to create a virtual environment.
+If you prefer conda, use the following command:
+
 ```bash
 conda env create --name SDEO_env -f environment.yml
+```
+
+Now run the following commands to activate the conda environment and install the package (make sure you call this command from the repository root):
+
+```bash
+conda activate SDEO_env
+pip install -e .
 ```
 
 ## Reproducing Figures
@@ -49,6 +58,11 @@ Slow-changing concentration dynamics:
 python -m mirrored_langevin_rnn.run configs/simulation_steps_slam_sparse_binary.yaml &
 python -m mirrored_langevin_rnn.run configs/simulation_steps_slam_circuit_sparse_binary.yaml &
 python -m mirrored_langevin_rnn.run configs/simulation_steps_poisson_sparse_binary.yaml
+```
+
+```bash
+python -m mirrored_langevin_rnn.run configs/simulation_slam_L1_dense_gamma.yaml &
+python -m mirrored_langevin_rnn.run configs/simulation_slam_L1_sparse_binary.yaml
 ```
 
 #### SDEO vs. Non-separated Comparison (Figures 5 and S5)
