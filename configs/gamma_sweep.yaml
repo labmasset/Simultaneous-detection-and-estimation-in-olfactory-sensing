@@ -1,0 +1,13 @@
+kind: experiment
+system:
+  use_gpu: false
+  torch_num_threads: 1
+experiment:
+  type: gamma_sweep
+  model: mld_rnn
+  rnn_type: rnn
+  params:
+    gamma_values: [1.0, 2.0]
+    repeats: 2
+    sensing_matrix_type: sparse_binary
+    sensing_matrix_sparsity: 0.1

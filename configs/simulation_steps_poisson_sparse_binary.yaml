@@ -1,0 +1,26 @@
+kind: simulation
+system:
+  use_gpu: False
+  torch_num_threads: 1 # for CPU
+simulation:
+  model: poisson
+  params:
+    num_osn: !!int 300
+    num_potential_odors: !!int 500
+    num_high: !!int 3
+    num_low: !!int 3
+    sample_rate: !!int 100
+
+    sensing_matrix_type: sparse_binary
+    sensing_matrix_sparsity: !!float 0.1
+
+    c_high: !!float 70
+    c_med: !!float 20
+    c_low: !!float 40
+
+    dt: !!float 1e-5
+    t_max: !!float 2.5
+    t_on_low: !!float 0.5
+    t_on_med: !!float 1
+    t_on_high: !!float 1.5
+    t_off: !!float 2

@@ -1,0 +1,43 @@
+kind: simulation
+system:
+  use_gpu: False
+  torch_num_threads: 1 # for CPU
+  log_level: INFO
+  log_file: simulation_slam.log
+simulation:
+  model: slam_circuit
+  params:
+    saveAll: true
+
+    num_osn: !!int 300
+    num_potential_odors: !!int 500
+    num_high: !!int 3
+    num_low: !!int 3
+    sample_rate: !!int 100
+
+    sensing_matrix_type: sparse_binary
+    sensing_matrix_sparsity: !!float 0.1
+
+    c_high: !!float 70
+    c_med: !!float 20
+    c_low: !!float 40
+
+    dt: !!float 1e-5
+    t_max: !!float 2.5
+    t_on_low: !!float 0.5
+    t_on_med: !!float 1
+    t_on_high: !!float 1.5
+    t_off: !!float 2
+
+    threshold: !!float 0.2
+    eps: !!float 1e-3
+    eps_denom: !!float 1e-3
+
+    tau_c: !!float 0.02
+    tau_p: !!float 0.02
+
+    alpha: !!float 5.0
+    beta: !!float 0.1
+
+    w: !!float 0.01
+    gamma_val: !!float 1

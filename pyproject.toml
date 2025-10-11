@@ -1,0 +1,29 @@
+# SLAM_olfaction/pyproject.toml
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mirrored_langevin_rnn_olfaction"
+version = "0.1.0"
+authors = [
+    { name = "Chen Jiang", email = "chen.jiang3@mail.mcgill.ca" },
+    { name = "Matthew He", email = "yizheng.he@mail.mcgill.ca" },
+    ]
+description = "Codes for producing the results in SLAM olfaction paper."
+requires-python = ">=3.11"
+dependencies = [
+    "numpy",
+    "scipy",
+    "matplotlib",
+    "scikit-learn",
+    "h5py",
+    "torch",
+    "seaborn",
+    "pandas",
+    "PyYAML",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mirrored_langevin_rnn*"]

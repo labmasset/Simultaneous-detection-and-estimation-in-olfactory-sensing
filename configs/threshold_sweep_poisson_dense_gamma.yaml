@@ -1,0 +1,42 @@
+kind: experiment
+system:
+  use_gpu: false
+  torch_num_threads: 4
+  log_level: INFO
+experiment:
+  type: threshold_sweep
+  model: poisson
+  metric: roc
+
+  params:
+    workers: !!int 1
+
+    num_potential_odors_values: 
+      start: !!int 1000
+      end: !!int 16000
+      num: !!int 16
+    num_osn_values: 
+      start: !!int 100
+      stepsize: !!int 50
+      end: !!int 800
+
+    num_high_values: 
+      start: !!int 5
+      stepsize: !!int 5
+      end: !!int 100
+
+    error_threshold: !!float 0.85
+
+    sensing_matrix_type: dense_gamma
+    sensing_matrix_sparsity: !!float 0.1
+
+    c_high: !!float 40
+    c_low: !!float 0
+
+    dt: !!float 1e-5
+    t_max: !!float 0.2
+    t_on_low: !!float 0
+    t_on_high: !!float 0
+    seed: None
+    batch_size: !!int 1
+    repeats: !!int 3

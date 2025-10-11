@@ -1,0 +1,39 @@
+kind: experiment
+system:
+  use_gpu: False
+  torch_num_threads: 1
+  log_level: INFO
+experiment:
+  type: present_sweep
+  model: slam
+  params:
+    workers: !!int 1
+    num_osn:  !!int 300
+    num_potential_odors: !!int 1000
+
+    num_low_values: 
+      start: 0
+      stepsize: 1
+      end: 0
+
+    sample_rate: !!int 1000
+
+    num_high_values: 
+      start: 1
+      stepsize: 1
+      end: 100
+    repeats: !!int 40
+
+    sensing_matrix_type: dense_gamma
+    sensing_matrix_sparsity: !!float 0.1
+
+    c_high: !!float 40
+    c_low: !!float 0
+
+    dt: !!float 1e-5
+    t_max: !!float 0.75
+    t_on_low: !!float 0
+    t_on_high: !!float 0
+
+    seed: None
+    batch_size: !!int 100
