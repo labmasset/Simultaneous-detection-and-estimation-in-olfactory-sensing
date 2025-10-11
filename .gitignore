@@ -1,0 +1,84 @@
+# Ignore backup and temporary files
+*.asv
+*.m~ 
+*.bak
+
+# Ignore MATLAB figures and workspace files
+*.fig
+*.mat
+*.h5
+
+# Ignore compiled files and object files
+*.p
+*.mex*
+*.obj
+
+# Ignore temporary files created by MATLAB
+*.log
+*.out
+*.err
+*.autosave
+
+# Ignore directories
+**/slprj/
+**/work/
+**/results/
+**/simulink/
+z_scratch/
+
+# Ignore user-specific and desktop environment files
+.DS_Store
+Thumbs.db
+
+# Ignore project-specific settings files (optional)
+*.prj
+*.mlproj
+*.sldd
+*.slxc
+
+# Ignore custom cache or other output files
+*.cache
+*.gz
+
+# Ignore data files (optional)
+*.csv
+*.dat
+*.txt
+*.png
+
+
+# If you have any files that are specific to your development setup:
+# Uncomment or add them below.
+# *.env
+# *.key
+
+
+.idea/vcs.xml
+.idea/Simultaneous-detection-and-mapping.iml
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.workspace.xml
+
+**.ipynb_checkpoints
+/data_processing/.ipynb_checkpoints
+
+# Ignore virtual environments
+.venv/
+slam_olfaction.egg-info/
+**__pycache__/
+**/__pycache__/ 
+/mirrored_langevin_rnn/utils/__pycache__
+/.idea
+/.idea
+.idea/workspace.xml
+
+.vscode/
+.vscode/settings.json
+
+*.npz
+*.json
+*.egg-info
+temp/
+
+figures/
