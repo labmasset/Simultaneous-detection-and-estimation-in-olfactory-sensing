@@ -418,10 +418,10 @@ class DynamicsPlotter:
                     # color="#A90A0AFF",
                     # color="#DC1818FF",
                     color="#E45B11F2",
-                    linestyle='--',
+                    linestyle='-',
                     linewidth=2,
                     zorder=5,  # Ensure lines are below the axis
-                    alpha=0.99
+                    alpha=0.95
                 )
             ax.plot(
                 t_true_idx,
@@ -433,7 +433,7 @@ class DynamicsPlotter:
                 linestyle='--',
                 linewidth=2,
                 zorder=6,  # Ensure lines are below the axis
-                alpha=0.99
+                alpha=0.95
             )
             
         apply_style(ax, style=self.style)
